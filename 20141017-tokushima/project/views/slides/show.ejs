@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= slide.title %></h1>
+    <% for (var s in slide.sections) {
+		  var section = slide.sections[s];
+		%>
+      <% for (var t in section) { %>
+			  <% if ( t === 'list' ) { %>
+				  <ul>
+					  <% for (var i in section[t]) { %>
+						  <li><%= section[t][i] %></li>
+						<% } %>
+					</ul>
+        <% }else if ( t === 'block' ){ %>
+				  <div><%= section[t] %></div>
+        <% }else if ( t === 'strong' ){ %>
+				  <div class="strong"><%= section[t] %></div>
+        <% } %>
+      <% } %>
+    <% } %>
+  </body>
+</html>

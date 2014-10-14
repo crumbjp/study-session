@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>自己紹介</h1>
+    <% if (doc._photo ){ %>
+      <img src="<%= doc._photo %>"></img>
+    <% } %>
+    <table>
+      <% for (var name in doc) { %>
+        <% if (name.match(/^_/) ) continue; %>
+        <tr>
+          <td class="name"><%= name %></td><td>
+          <% if (typeof doc[name] === 'object' ){ %>
+            <% for (var k in doc[name]) { %>
+              <h6><%= k %></h6><a href="<%= doc[name][k] %>"><%= doc[name][k] %></a>
+            <% } %>
+          <% }else{ %>
+            <%= doc[name] %>
+          <% } %>
+          </td>
+        </tr>
+      <% } %>
+      <tr>
+        <td class="name">クエリー</td><td>
+					<% for (var i in doc._queries) { %>
+					  <p><%= doc._queries[i] %></p>
+					<% } %>
+				</td>
+    </table>
+  </body>
+</html>

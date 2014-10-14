@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>スライド</h1>
+		<ul>
+      <% for (var i in slides) { %>
+			  <li><a href="/slides/<%= slides[i]._id %>"><%= slides[i].title %></a></li>
+      <% } %>
+		</ul>
+  </body>
+</html>

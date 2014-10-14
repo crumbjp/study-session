@@ -1,0 +1,51 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('/images/bg.png');
+  color: #ffffdd;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+a {
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+img {
+	width: 150px;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 1px;
+	border-color: gray;
+}
+
+table td {
+	vertical-align: top;
+	padding-left: 10px;
+}
+
+table td.name {
+  font-size: 1.2em;
+	padding-bottom: 10px;
+}
+
+table td h6 {
+  padding: 0;
+  margin: 10px 0 0 0;
+  font-size: 1em;
+}
+
+table td a {
+  padding-left: 50px;
+}
+
+.strong {
+  font-size: 1.2em;
+	color: #ffff44;
+	margin: 10px;
+}
