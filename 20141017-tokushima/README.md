@@ -48,6 +48,7 @@ WriteResult({ "nInserted" : 1 })
   }
 }
 ```
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/introduction.js
 
 ## Import to MySQL
 ```sh
