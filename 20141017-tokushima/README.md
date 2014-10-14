@@ -1,13 +1,17 @@
 
 # 第３回とくしまOSS勉強会
 
-- 自己紹介
-```
+## Clone this project
+```sh
 export BASE_DIR="$HOME/tokushima-oss"
 mkdir -p $BASE_DIR
 cd $BASE_DIR
+git clone https://github.com/crumbjp/study-session.git
+cd study-session/20141017-tokushima/
+```
 
-# mongo
+## Setup mongo
+```sh
 brew install wget
 mkdir -p var
 wget https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-2.6.5.tgz -O mongodb-osx-x86_64-2.6.5.tgz
@@ -18,15 +22,25 @@ mkdir mongo/data1
 mkdir mongo/data2
 mkdir mongo/data3
 mongo/bin/mongod --dbpath ./mongo/data1
+```
 
-
-# mysql
+## Setup amysql
+```
 brew install mysql
 mysqld
+```
 
-
-# express
+## Setup express and start
+```
 brew install node
+pushd project
+npm install
+
+./bin/www
+```
+
+
+```
 mkdir project
 npm init -f
 npm install express --save-dev
@@ -42,7 +56,6 @@ npm install
 
 ```
 #!/usr/bin/env bash
-git clone https://github.com/crumbjp/study-session.git
 
 /usr/local/mongodb/bin/mongod -f /usr/local/mongodb/conf/mongod.conf
 
