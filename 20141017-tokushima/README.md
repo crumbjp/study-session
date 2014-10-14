@@ -66,6 +66,7 @@ _id     _introduction_id        name    url
 3       1       データベースエンジニア養成読本(寄稿)    http://gihyo.jp/book/2013/978-4-7741-5806-8/
 4       1       MongoDBJP       http://mongodb.jp/mongo/main/
 ```
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/introduction.sql
 
 ## Mongo ReplicaSet
 ```sh
@@ -90,6 +91,7 @@ mongod --dbpath $BASE_DIR/mongo/data3 --port 27019 --replSet 'tokushima-RS'
 export BASE_DIR="$HOME/tokushima-oss/study-session/20141017-tokushima/"
 mongo --quiet <$BASE_DIR/data/replset.js
 ```
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/replset.js
 
 ## Express
 ```sh
@@ -123,6 +125,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
         "_photo" : "/images/crumbjp.jpg"
 }
 ```
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/introduction-update.js
 
 ## Update to MySQL
 ```sh
@@ -141,11 +144,14 @@ _id     _introduction_id        name    url
 4       1       MongoDBJP       http://mongodb.jp/mongo/main/
 ```
 
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/introduction-update.sql
+
 ## Import slide
 ```sh
 export BASE_DIR="$HOME/tokushima-oss/study-session/20141017-tokushima/"
 mongoimport -d tokushima -c slides $BASE_DIR/data/slides.export.js
 ```
+https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/slides.export.js
 
 ## Mongo
 ```js
