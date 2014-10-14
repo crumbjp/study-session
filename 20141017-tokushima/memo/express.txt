@@ -1,0 +1,10 @@
+mkdir project
+npm init -f
+npm install express --save-dev
+npm install mongolian --save-dev
+npm install mysql --save-dev
+npm install express-generator --save-dev
+export PATH=./node_modules/.bin:$PATH
+express -e -f .
+npm install
+./bin/www

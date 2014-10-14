@@ -1,0 +1,10 @@
+brew install wget
+mkdir -p var
+wget https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-2.6.5.tgz -O mongodb-osx-x86_64-2.6.5.tgz
+tar xzvf mongodb-osx-x86_64-2.6.5.tgz
+mkdir -p mongo
+mv mongodb-osx-x86_64-2.6.5/bin mongo/bin
+mkdir mongo/data1
+mkdir mongo/data2
+mkdir mongo/data3
+mongo/bin/mongod --dbpath ./mongo/data1
