@@ -164,3 +164,103 @@ db.slides.update({page:1}, {$push: {sections: {strong: 'PHP懐かしい！！'}}
 db.slides.findOne({page:1})
 
 ```
+
+## Hobies example
+### import
+```sh
+export BASE_DIR="$HOME/tokushima-oss/study-session/20141017-tokushima/"
+mongoimport -d tokushima -c hobies $BASE_DIR/data/hobies.export.js
+```
+
+### tag search
+```js
+db.hobies.find({hobies: 'golf'})
+db.hobies.find({hobies: 'golf'}).explain()
+db.hobies.ensureIndex({hobies: 1})
+db.hobies.find({hobies: 'golf'}).explain()
+```
+
+### tag intersection
+```js
+db.hobies.find({ $and: [{hobies: 'golf'}, {hobies: 'drive'}]})
+db.hobies.find({ $and: [{hobies: 'golf'}, {hobies: 'drive'}]}).explain()
+```
+
+### Aggregate male's hoby
+#### pickup male
+```js
+db.hobies.find({sex: 'male'})
+
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+]);
+
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $out: 'tmp' },
+]);
+
+show collections;
+db.tmp.stats()
+```
+
+#### Count
+```js
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+]);
+```
+
+#### Group
+```js
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+ { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
+]);
+
+#### Sort
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+ { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
+ { $sort: { count: -1 } },
+]);
+
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+ { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
+ { $sort: { count: -1 } },
+ { $limit: 3 },
+]);
+
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+ { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
+ { $sort: { count: -1 } },
+ { $limit: 3 },
+ { $out: 'tmp' },
+]);
+
+db.tmp.find()
+```
+
+```js
+db.hobies.aggregate([
+ { $match: { sex: 'male' } },
+ { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
+ { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
+ { $sort: { count: -1 } },
+ { $limit: 3 },
+ { $out: 'tmp' },
+]);
+```
+
+### Popular hobies
+Use $unwind to expand hobies field
+```js
+ { $unwind: "$hobies" },
+```
