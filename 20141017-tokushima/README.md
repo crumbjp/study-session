@@ -154,6 +154,7 @@ mongoimport -d tokushima -c slides $BASE_DIR/data/slides.export.js
 https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/slides.export.js
 
 ## Mongo
+http://docs.mongodb.org/manual/reference/sql-comparison/
 http://docs.mongodb.org/manual/reference/operator/query/
 
 ```js
