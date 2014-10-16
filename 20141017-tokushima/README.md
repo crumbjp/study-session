@@ -154,6 +154,8 @@ mongoimport -d tokushima -c slides $BASE_DIR/data/slides.export.js
 https://github.com/crumbjp/study-session/blob/master/20141017-tokushima/data/slides.export.js
 
 ## Mongo
+http://docs.mongodb.org/manual/reference/operator/query/
+
 ```js
 use tokushima
 db.introduction.update({'氏名': '窪田 博昭'}, {$set: {'活動.勉強会': 'とくしまOSS勉強会'}});
@@ -166,7 +168,9 @@ db.slides.findOne({page:1})
 ```
 
 ## Hobies example
-### import
+http://docs.mongodb.org/manual/meta/aggregation-quick-reference/
+
+### Import
 ```sh
 export BASE_DIR="$HOME/tokushima-oss/study-session/20141017-tokushima/"
 mongoimport -d tokushima -c hobies $BASE_DIR/data/hobies.export.js
@@ -219,8 +223,10 @@ db.hobies.aggregate([
  { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
  { $group: {_id: "$numhobies", count: { $sum: "$count" } } },
 ]);
+```
 
 #### Sort
+```js
 db.hobies.aggregate([
  { $match: { sex: 'male' } },
  { $project: {count: {$literal: 1}, numhobies: { $size: "$hobies" } } },
