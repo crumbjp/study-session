@@ -34,8 +34,8 @@ function mongo_test {
   time $MONGO sample $SUMMARY_JS
 }
 
-mysql_test
-mysql_test
+# mysql_test
+# mysql_test
 
 mongo_test
 mongo_test
