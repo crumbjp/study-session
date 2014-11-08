@@ -3,8 +3,8 @@ MYSQL='mysql'
 MONGO='/usr/local/mongo/bin/mongo'
 MONGOIMPORT='/usr/local/mongo/bin/mongoimport'
 
-DIR=`dirname $0`
-DATA_DIR="$DIR/../data/"
+SCRIPT_DIR=`dirname $0`
+DATA_DIR="$SCRIPT_DIR/../data/"
 
 OPTIONS=`getopt -o n:, -- "$@"`
 if [ $? != 0 ] ; then
@@ -24,10 +24,10 @@ if [ "$N" == "" ] ; then
   exit 1
 fi
 
-DDL_SQL="$DATA_DIR/ddl.sql"
-ALTER_SQL="$DATA_DIR/alter.sql"
-ENSURE_INDEX_SQL="$DATA_DIR/ensureIndex.sql"
-ENSURE_INDEX_JS="$DATA_DIR/ensureIndex.js"
+DDL_SQL="$SCRIPT_DIR/ddl.sql"
+ALTER_SQL="$SCRIPT_DIR/alter.sql"
+ENSURE_INDEX_SQL="$SCRIPT_DIR/ensureIndex.sql"
+ENSURE_INDEX_JS="$SCRIPT_DIR/ensureIndex.js"
 
 DATA_SQL="$DATA_DIR/sample_$N.sql"
 DATA_JS="$DATA_DIR/sample_$N.js"
@@ -59,8 +59,8 @@ function mongo_test {
   time bash -c "$MONGO --quiet sample $ENSURE_INDEX_JS > /dev/null"
 }
 
-mysql_test
-mysql_test
+# =mysql_test
+#mysql_test
 
 mongo_test
 mongo_test
@@ -127,3 +127,76 @@ mongo_test
 # real	0m39.875s
 # user	0m0.115s
 # sys	0m0.082s
+
+
+
+
+
+
+
+# === Import script/../data//sample_10000000.sql
+#
+# real    11m14.307s
+# user    0m47.187s
+# sys     0m11.343s
+# === RELATION INDEX
+#
+# real    1m59.283s
+# user    0m0.004s
+# sys     0m0.007s
+# === CREATE INDEX
+#
+# real    3m56.211s
+# user    0m0.008s
+# sys     0m0.007s
+# === Import script/../data//sample_10000000.sql
+#
+# real    11m31.186s
+# user    0m46.906s
+# sys     0m11.814s
+# === RELATION INDEX
+#
+# real    1m59.542s
+# user    0m0.003s
+# sys     0m0.010s
+# === CREATE INDEX
+#
+# real    3m54.540s
+# user    0m0.006s
+# sys     0m0.006s
+# === Import script/../data//sample_10000000.js
+#
+# real    13m5.031s
+# user    2m12.989s
+# sys     0m27.708s
+# === ENSURE INDEX
+#
+# real    7m27.809s
+# user    0m0.839s
+# sys     0m1.444s
+# === Import script/../data//sample_10000000.js
+#
+# real    13m3.843s
+# user    2m11.858s
+# sys     0m26.936s
+# === ENSURE INDEX
+#
+# real    7m12.499s
+# user    0m0.845s
+# sys     0m1.389s
+
+# === Import script/../data//sample_100000000.js
+# real    264m19.817s
+# user    24m13.975s
+# sys     5m12.147s
+# real    219m19.955s
+# user    23m42.124s
+# sys     5m0.262s
+#
+# === ENSURE INDEX
+# real    496m41.948s
+# user    1m13.679s
+# sys     2m4.523s
+# real    311m0.876s
+# user    0m36.754s
+# sys     1m0.721s
